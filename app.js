@@ -33,12 +33,20 @@ app.configure('production', function () {
 app.get('/', routes.index);
 app.get('/hello/say', routes.hello.say);
 
-app.listen(3000, function () {
+app.listen(3001, function () {
     console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
 
 var book={name:'枪炮、病毒和钢铁'};
 var docProvider=new DocProvider('books');
-docProvider.insert(book,{},function(result){
-    console.log('insert ok.');
+//docProvider.insert(book,{},function(result){
+//    console.log('insert ok.');
+//
+//    docProvider.findOne({_id:book._id},{},function(result){
+//        console.log('find one ok:'+result.name);
+//    });
+//});
+
+docProvider.findOne({name:'钱的历史'}, {}, function (result) {
+    console.log('find one ok:' + result.name);
 });
